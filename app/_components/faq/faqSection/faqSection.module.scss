@@ -4,9 +4,20 @@
   align-items: center;
   padding: clamp(2.5rem, calc(5vw / 0.48), 4rem)
     clamp(1rem, calc(2.5vw / 0.48), 2.5rem);
-  gap: clamp(1rem, calc(2vw / 0.48), 2rem);
+
+  gap: clamp(1rem, calc(2vw / 0.48), 0rem);
   color: $white;
-  font-size: 1.5rem;
+
+  .questionContainer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    // @media (max-width: 1024px) {
+    //   gap: 1rem;
+    // }
+    height: 100%;
+  }
 
   h1 {
     width: 100%;

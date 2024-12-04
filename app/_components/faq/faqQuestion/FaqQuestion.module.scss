@@ -1,0 +1,171 @@
+.faqQuestion {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-bottom: 0.75px solid $whiteDarker;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -0.75px;
+    left: 0;
+    width: 0;
+    height: 0.75px;
+    background: $primaryGradient;
+    transition: width 0.8s ease-in-out;
+
+    @include reduce-motion {
+      transition: none;
+    }
+  }
+
+  &::details-content {
+    display: block;
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+      content-visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-behavior: allow-discrete;
+
+    @include reduce-motion {
+      transition: none;
+    }
+  }
+
+  &[open] {
+    &::after {
+      width: 100%;
+    }
+
+    &::details-content {
+      block-size: auto; // Fallback
+      block-size: calc-size(auto, size);
+    }
+
+    .title .button {
+      .vertical {
+        transform: rotate(450deg);
+      }
+
+      .horizontal {
+        transform: rotate(360deg);
+      }
+    }
+
+    .content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    cursor: pointer;
+    list-style: none;
+    padding: clamp(0.5rem, calc(1.25vw / 0.48), 1.25rem)
+      clamp(0rem, calc(1vw / 0.48), 1rem)
+      clamp(0.75rem, calc(1.5vw / 0.48), 1.5rem);
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    h3 {
+      margin: 0;
+      padding-left: clamp(2rem, calc(5vw / 0.48), 5rem);
+      padding-right: 1rem;
+      color: $white;
+
+      &::before {
+        content: attr(data-index);
+        position: absolute;
+        left: clamp(0rem, calc(1vw / 0.48), 1rem);
+        margin: 0;
+        color: $whiteDarker;
+      }
+    }
+
+    .button {
+      position: relative;
+      display: block;
+      width: clamp(1.75rem, calc(1.75vw / 0.48), 1.75rem);
+      height: clamp(1.75rem, calc(1.75vw / 0.48), 1.75rem);
+      padding: 1.5px;
+      cursor: pointer;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+      .helperButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+
+      .active {
+        opacity: 1;
+      }
+
+      @include reduce-motion {
+        transition: none;
+      }
+    }
+  }
+
+  &:has(summary:focus-visible) {
+    outline: 2px solid $primaryGradientRight;
+    outline-offset: clamp(0.1rem, calc(0.2vw / 0.48), 0.3rem);
+    border-radius: 0.25rem;
+  }
+
+  .content {
+    margin: 0;
+    padding-left: clamp(2rem, calc(6vw / 0.48), 6rem);
+    padding-bottom: clamp(1rem, calc(1vw / 0.48), 1.5rem);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (min-width: 1024px) {
+      padding-right: clamp(4rem, calc(8vw / 0.48), 12rem);
+    }
+
+    @include reduce-motion {
+      transition: none;
+    }
+  }
+
+  &.visible {
+    animation: slideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+    @include reduce-motion {
+      animation: none;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

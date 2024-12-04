@@ -4,6 +4,7 @@
 import styles from "./faqSection.module.scss";
 import faqQuestions from "@/config/faqQuestions";
 import { useState } from "react";
+import FaqQuestion from "../faqQuestion/FaqQuestion";
 
 function FaqSection() {
   const [visibleCount, setVisibleCount] = useState(10);
@@ -67,6 +68,21 @@ function FaqSection() {
         {titleSvg()}
         <span>Pytaj</span>, jakby jutra miało nie być. Odpowiemy!
       </h1>
+
+      <div
+        className={styles.questionContainer}
+        role="feed"
+        aria-label="FAQ questions and answers"
+      >
+        {faqQuestions.map((question, index) => (
+          <FaqQuestion
+            key={index}
+            index={index}
+            questionData={question}
+            isVisible={index < visibleCount}
+          />
+        ))}
+      </div>
 
       {visibleCount < faqQuestions.length && (
         <nav className={styles.menu} aria-label="FAQ Menu">

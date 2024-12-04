@@ -1,5 +1,5 @@
 import { Poppins } from "@/app/fonts/fonts";
-import "./_styles/globals.css";
+import "./_styles/globals.scss";
 import type { Metadata } from "next";
 import type { Viewport } from "next";
 
