@@ -1,6 +1,14 @@
 import { Poppins } from "@/app/fonts/fonts";
-import "@/global/global.scss";
+import "./_styles/globals.css";
 import type { Metadata } from "next";
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+  themeColor: "black",
+  initialScale: 1,
+  maximumScale: 1,
+  width: "device-width",
+};
 
 export const metadata: Metadata = {
   title: {
@@ -10,15 +18,8 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "FAQ Section",
   description: "Common Questions Regarding Our Services and Products",
-  keywords: ["FAQ", "Questions", "Answers"],
+  keywords: ["FAQ", "Questions", "Answers", "Support", "Kryptoneum"],
   referrer: "origin-when-cross-origin",
-  colorScheme: "dark",
-  themeColor: "#2dd282",
-  viewport: {
-    initialScale: 1,
-    maximumScale: 1,
-    width: "device-width",
-  },
 };
 
 export default function RootLayout({

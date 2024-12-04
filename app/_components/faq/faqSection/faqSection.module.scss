@@ -1,0 +1,102 @@
+.faqSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(2.5rem, calc(5vw / 0.48), 4rem)
+    clamp(1rem, calc(2.5vw / 0.48), 2.5rem);
+  gap: clamp(1rem, calc(2vw / 0.48), 2rem);
+  color: $white;
+  font-size: 1.5rem;
+
+  h1 {
+    width: 100%;
+    margin: 0;
+
+    span {
+      background-image: $primaryGradient;
+      color: transparent;
+      background-clip: text;
+    }
+
+    svg {
+      margin-right: clamp(0.2rem, 1.5vw, 0.5rem);
+      vertical-align: middle;
+      height: clamp(1rem, 2vw, 1.5rem);
+    }
+  }
+
+  .menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .counter {
+      position: absolute;
+      bottom: calc(100% - 0.75rem);
+      left: 0;
+      margin: auto;
+      padding: clamp(0.175rem, 0.35vw, 0.85rem) clamp(0.3rem, 0.5vw, 1.1rem);
+      background-color: $primaryDarker;
+      border-radius: clamp(0.6rem, 1.25vw, 2rem);
+      font-size: 0.75rem;
+      color: $whiteDarker;
+      white-space: nowrap;
+      transform: translateX(calc(var(--progress) * 8.125rem - 50%));
+      transition: transform 0.3s;
+
+      @include reduce-motion {
+        transition: none;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -0.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 0.25rem solid transparent;
+        border-right: 0.25rem solid transparent;
+        border-top: 0.25rem solid $primaryDarker;
+      }
+    }
+
+    .progressBar {
+      width: 8.125rem;
+      height: 2px;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+      background-color: $primary;
+
+      .indicator {
+        height: 100%;
+        background-image: $primaryGradient;
+        transition: width 0.3s;
+
+        @include reduce-motion {
+          transition: none;
+        }
+      }
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      color: $white;
+      font-size: 0.875rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      svg {
+        margin-left: clamp(0.3rem, 1.5vw, 0.5rem);
+        height: 1rem;
+        vertical-align: middle;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $primaryGradientRight;
+        outline-offset: 0.3rem;
+      }
+    }
+  }
+}

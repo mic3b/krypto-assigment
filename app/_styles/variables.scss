@@ -1,0 +1,18 @@
+$black: #000;
+$white: #f0f7f7;
+$whiteDarker: #c6cdcc;
+$primaryGradientLeft: #90f4e8;
+$primaryGradientRight: #2dd282;
+$primary: #064040;
+$primaryDarker: #042b2b;
+$primaryGradient: linear-gradient(
+  90deg,
+  $primaryGradientLeft 0px,
+  $primaryGradientRight 100%
+);
+
+@mixin reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
