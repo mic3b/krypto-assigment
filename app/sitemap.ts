@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.PUBLIC_URL || "krypto-assigment.vercel.app";
+  const baseUrl =
+    process.env.PUBLIC_URL || "https://krypto-assigment.vercel.app/";
 
   return [
     {
